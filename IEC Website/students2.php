@@ -1,12 +1,11 @@
 <?php
  include ('studentsheader.html');
-
+include ('base.php')
    
     
     ?>
 <div id="main">
     <?php
-    include ('base.php')
     
     ?>
 </div>
