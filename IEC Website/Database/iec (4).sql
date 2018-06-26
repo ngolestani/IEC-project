@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2018 at 09:07 AM
+-- Generation Time: Jun 26, 2018 at 09:51 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -76,6 +76,24 @@ INSERT INTO `coursetype` (`ctID`, `ctName`, `ctAge`, `ctComment`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `iecoffice`
+--
+
+CREATE TABLE `iecoffice` (
+  `officeID` int(11) NOT NULL,
+  `officeAddress1` varchar(30) NOT NULL,
+  `officeAddress2` varchar(20) NOT NULL,
+  `officeCity` varchar(25) NOT NULL,
+  `officeRegion` varchar(30) NOT NULL,
+  `officePostCode` varchar(15) NOT NULL,
+  `officeCountry` varchar(30) NOT NULL,
+  `officeTel` varchar(15) NOT NULL,
+  `officeMovile` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `institute`
 --
 
@@ -99,15 +117,16 @@ CREATE TABLE `institute` (
   `image` varchar(20) NOT NULL,
   `ivideos` varchar(25) NOT NULL,
   `iHowToApply` longtext NOT NULL,
-  `iPaymentMethod` mediumtext NOT NULL
+  `iPaymentMethod` mediumtext NOT NULL,
+  `iCourses` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `institute`
 --
 
-INSERT INTO `institute` (`iID`, `iName`, `iType`, `iEnrolmentRequirement`, `iRefundPolicy`, `iAge`, `iAdress1`, `iAddress2`, `iCity`, `iPostCode`, `iCountry`, `iWebsite`, `iTel`, `iEmail`, `iCommission`, `iComment`, `image`, `ivideos`, `iHowToApply`, `iPaymentMethod`) VALUES
-(1, 'Able Manchester', 'Private Language', 'Fill the Application. Pay the fees in Full.\r\n', 'If the visa is rejected, send them the embassy proof and the student would get refunded.', '12 Plus', '20 Swan Street', '', 'Manchester', 'M4 5JW', 'UK', 'www.able-manchester.co.uk', '+441616373062', 'able-manchester.co.uk/contact/', '20', 'Located in Central Manchester; Run by Family', 'ablemanchester.jpg', '', 'Fill application. make the full payment.', 'Full payment in advance');
+INSERT INTO `institute` (`iID`, `iName`, `iType`, `iEnrolmentRequirement`, `iRefundPolicy`, `iAge`, `iAdress1`, `iAddress2`, `iCity`, `iPostCode`, `iCountry`, `iWebsite`, `iTel`, `iEmail`, `iCommission`, `iComment`, `image`, `ivideos`, `iHowToApply`, `iPaymentMethod`, `iCourses`) VALUES
+(1, 'Able Manchester', 'Private Language', 'Fill the Application. Pay the fees in Full.\r\n', 'If the visa is rejected, send them the embassy proof and the student would get refunded.', '12 Plus', '20 Swan Street', '', 'Manchester', 'M4 5JW', 'UK', 'www.able-manchester.co.uk', '+441616373062', 'able-manchester.co.uk/contact/', '20', 'Located in Central Manchester; Run by Family', 'ablemanchester.jpg', '', 'Fill application. make the full payment.', 'Full payment in advance', '');
 
 -- --------------------------------------------------------
 
@@ -333,6 +352,12 @@ ALTER TABLE `coursetype`
   ADD PRIMARY KEY (`ctID`);
 
 --
+-- Indexes for table `iecoffice`
+--
+ALTER TABLE `iecoffice`
+  ADD PRIMARY KEY (`officeID`);
+
+--
 -- Indexes for table `institute`
 --
 ALTER TABLE `institute`
@@ -423,6 +448,11 @@ ALTER TABLE `agents`
 --
 ALTER TABLE `coursetype`
   MODIFY `ctID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `iecoffice`
+--
+ALTER TABLE `iecoffice`
+  MODIFY `officeID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `institute`
 --
