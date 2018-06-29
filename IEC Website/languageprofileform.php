@@ -18,50 +18,54 @@
                  </div>
 				<div class="col-lg-6">
                       <div class="form-group">
-                        <label for="examtype">Exam Type</label>
-                        <input id="examtype" name="examtype" type="text" class="form-control">
+                        <label for="examtype">Exam Type</label><br>
+                        <input type="radio" name="examtype" value="IELTS" checked> IELTS<br>
+						<input type="radio" name="examtype" value="TOEFL"> TOEFL<br>
+						<input type="radio" name="examtype" value="FCE"> CAMBRIDGE FCE<br>
+						<input type="radio" name="examtype" value="CAE"> CAMBRIDGE CAE<br>
+						<input type="radio" name="examtype" value="CPE"> CAMBRIDGE CPE<br>
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="listening">Listening</label>
-                        <input id="listening" name="listening" type="text" class="form-control">
+                        <input id="listening" name="listening" type="number" min="0"class="form-control">
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="reading">Reading</label>
-                        <input id="reading" name="reading" type="text" class="form-control">
+                        <input id="reading" name="reading" type="number" min="0"class="form-control">
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="writing">Writing</label>
-                        <input id="writing" name="writing" type="text" class="form-control">
+                        <input id="writing" name="writing" type="number" min="0" class="form-control">
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="speaking">Speaking</label>
-                        <input id="speaking" name="speaking" type="text" class="form-control">
+                        <input id="speaking" name="speaking" type="number" min="0" class="form-control">
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="oband">Overal Band</label>
-                        <input id="oband" name="oband" type="text" class="form-control">
+                        <input id="oband" name="oband" type="number" min="0" class="form-control">
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="certificatedate">Certificate Date</label>
-                        <input id="certificatedate" name="certificatedate " type="text" class="form-control">
+                        <input id="certificatedate" name="certificatedate " type="date" class="form-control">
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="languagedoc">Language Doc</label>
-                        <input id="languagedoc" name="languagedoc" type="text" class="form-control">
+                        <input id="languagedoc" name="languagedoc" type="file" class="form-control">
                       </div>
                
 				 <div class="col-md-6">

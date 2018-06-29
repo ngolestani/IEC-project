@@ -18,44 +18,58 @@
                  </div>
 				<div class="col-lg-6">
                       <div class="form-group">
-                        <label for="lodgedvisabefore">Have you applied visa before?</label>
-                        <input id="lodgedvisabefore" name="lodgedvisabefore" type="text" class="form-control">
+                        <label for="lodgedvisabefore">Have you applied visa before?</label><br>
+                        <input type="radio" name="lodgedvisabefore" value="no" checked> No<br>
+						<input type="radio" name="lodgedvisabefore" value="yes"> Yes<br>
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="grantedvisabefore">Are you granted any visa before?</label>
-                        <input id="grantedvisabefore" name="grantedvisabefore" type="text" class="form-control">
+                        <label for="grantedvisabefore">Are you granted any visa before?</label><br>
+                        <input type="radio" name="grantedvisabefore" value="no" checked> No<br>
+						<input type="radio" name="grantedvisabefore" value="yes"> Yes<br>
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="rejectedvisabefore">Rejected Visa Before</label>
-                        <input id="rejectedvisabefore" name="rejectedvisabefore" type="text" class="form-control">
+                        <label for="rejectedvisabefore">Rejected Visa Before?</label><br>
+                        <input type="radio" name="rejectedvisabefore" value="no" checked> No<br>
+						<input type="radio" name="rejectedvisabefore" value="yes"> Yes<br>
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="deportedbefore">Date of Birth</label>
-                        <input id="deportedbefore" name="deportedbefore" type="text" class="form-control">
+                        <label for="deportedbefore"></label><br>
+                        <input type="radio" name="deportedbefore" value="no" checked> No<br>
+						<input type="radio" name="deportedbefore" value="yes"> Yes<br>
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="sponsor">Sponsor</label>
-                        <input id="sponsor" name="sponsor" type="text" class="form-control">
+                        <label for="sponsor">Sponsor</label><br>
+                        <input type="radio" name="sponsor" value="myself" checked>Myself<br>
+						<input type="radio" name="sponsor" value="spouse">Spouse<br>
+						<input type="radio" name="sponsor" value="parents">Parents<br>
+						<input type="radio" name="sponsor" value="familymember">Family Member<br>
+						<input type="radio" name="sponsor" value="friendsandrelatives">Friends and Relatives<br>
+						<input type="radio" name="sponsor" value="others">Others<br>
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="financialsupportsource">Financial Support Source</label>
-                        <input id="financialsupportsource" name="financialsupportsource" type="text" class="form-control">
+                        <label for="financialsupportsource">Financial Support Source</label><br>
+                        <input type="radio" name="financialsupportsource" value="home" checked>Home<br>
+						<input type="radio" name="financialsupportsource" value="destination">Destination<br>
+						<input type="radio" name="financialsupportsource" value="destination">both<br>
                       </div>
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="annualstudybudget">Annual Study Budget</label>
-                        <input id="annualstudybudget" name="annualstudybudget" type="text" class="form-control">
+                        <label for="annualstudybudget">Annual Study Budget</label><br>
+                        <input type="radio" name="annualstudybudget" value="15kto25k">15K-25K £<br>
+						<input type="radio" name="annualstudybudget" value="25kto35k">25K-35K £<br>
+						<input type="radio" name="annualstudybudget" value="35kplus">35K Plus £<br>
+						
                       </div>
                  </div>
 				 <div class="col-lg-6">
@@ -72,8 +86,8 @@
                  </div>
 				 <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="spassportexiry">Email</label>
-                        <input id="spassortexpiry" name="email" type="text" class="form-control">
+                        <label for="spassportexiry">Passport Expiry Date</label>
+                        <input id="spassortexpiry" name="spassortexpiry" type="date" class="form-control">
                       </div>
                  </div>
 				 <div class="col-lg-6">
@@ -85,7 +99,7 @@
 				 <div class="col-lg-6">
                       <div class="form-group">
                         <label for="spassportdoc">Student Passport Doc</label>
-                        <input id="spassportdoc" name="spassportdoc" type="text" class="form-control">
+                        <input id="spassportdoc" name="spassportdoc" type="file" class="form-control">
                       </div>
                  </div>
 				 
