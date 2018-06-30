@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2018 at 09:51 AM
+-- Generation Time: Jun 30, 2018 at 04:38 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -33,6 +33,7 @@ CREATE TABLE `agents` (
   `aEmail` varchar(25) NOT NULL,
   `aPassword` varchar(15) NOT NULL,
   `aCountry` varchar(30) NOT NULL,
+  `aTelephone` varchar(15) NOT NULL,
   `aMobile` varchar(16) NOT NULL,
   `aAddress1` varchar(35) NOT NULL,
   `aAddress2` varchar(30) NOT NULL,
@@ -45,8 +46,23 @@ CREATE TABLE `agents` (
 -- Dumping data for table `agents`
 --
 
-INSERT INTO `agents` (`aID`, `aFirstName`, `aSurname`, `aEmail`, `aPassword`, `aCountry`, `aMobile`, `aAddress1`, `aAddress2`, `aCity`, `aRegion`, `aPostCode`) VALUES
-(1, 'Nader', 'Golestani', 'ngolestani@hotmail.com', 'password', 'UK', '0744276666', '10 London Road', 'Bedfont', 'Feltham', 'Middx', 'TW14 8BE');
+INSERT INTO `agents` (`aID`, `aFirstName`, `aSurname`, `aEmail`, `aPassword`, `aCountry`, `aTelephone`, `aMobile`, `aAddress1`, `aAddress2`, `aCity`, `aRegion`, `aPostCode`) VALUES
+(1, 'Nader', 'Golestani', 'ngolestani@hotmail.com', 'password', 'UK', '', '0744276666', '10 London Road', 'Bedfont', 'Feltham', 'Middx', 'TW14 8BE');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agentstudent`
+--
+
+CREATE TABLE `agentstudent` (
+  `agentstudentID` int(11) NOT NULL,
+  `aID` int(11) NOT NULL,
+  `sID` int(11) NOT NULL,
+  `contract` mediumblob NOT NULL,
+  `authorizationLetter` blob NOT NULL,
+  `contractDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -100,13 +116,14 @@ CREATE TABLE `iecoffice` (
 CREATE TABLE `institute` (
   `iID` int(11) NOT NULL,
   `iName` varchar(50) NOT NULL,
-  `iType` enum('Private academic','public academic','private non-academic','Public School','Public College','Public University','Private School','Private Language','Public Language') NOT NULL,
+  `iType` enum('Private academic','public academic','private non-academic','Public School','Public College','Public University','Private School','Private Language School','Public Language School') NOT NULL,
   `iEnrolmentRequirement` mediumtext NOT NULL,
   `iRefundPolicy` mediumtext NOT NULL,
   `iAge` varchar(12) NOT NULL,
   `iAdress1` varchar(25) NOT NULL,
   `iAddress2` varchar(25) NOT NULL,
   `iCity` varchar(25) NOT NULL,
+  `iRegion` varchar(30) NOT NULL,
   `iPostCode` varchar(10) NOT NULL,
   `iCountry` varchar(30) NOT NULL,
   `iWebsite` varchar(30) NOT NULL,
@@ -125,8 +142,8 @@ CREATE TABLE `institute` (
 -- Dumping data for table `institute`
 --
 
-INSERT INTO `institute` (`iID`, `iName`, `iType`, `iEnrolmentRequirement`, `iRefundPolicy`, `iAge`, `iAdress1`, `iAddress2`, `iCity`, `iPostCode`, `iCountry`, `iWebsite`, `iTel`, `iEmail`, `iCommission`, `iComment`, `image`, `ivideos`, `iHowToApply`, `iPaymentMethod`, `iCourses`) VALUES
-(1, 'Able Manchester', 'Private Language', 'Fill the Application. Pay the fees in Full.\r\n', 'If the visa is rejected, send them the embassy proof and the student would get refunded.', '12 Plus', '20 Swan Street', '', 'Manchester', 'M4 5JW', 'UK', 'www.able-manchester.co.uk', '+441616373062', 'able-manchester.co.uk/contact/', '20', 'Located in Central Manchester; Run by Family', 'ablemanchester.jpg', '', 'Fill application. make the full payment.', 'Full payment in advance', '');
+INSERT INTO `institute` (`iID`, `iName`, `iType`, `iEnrolmentRequirement`, `iRefundPolicy`, `iAge`, `iAdress1`, `iAddress2`, `iCity`, `iRegion`, `iPostCode`, `iCountry`, `iWebsite`, `iTel`, `iEmail`, `iCommission`, `iComment`, `image`, `ivideos`, `iHowToApply`, `iPaymentMethod`, `iCourses`) VALUES
+(1, 'Able Manchester', '', 'Fill the Application. Pay the fees in Full.\r\n', 'If the visa is rejected, send them the embassy proof and the student would get refunded.', '12 Plus', '20 Swan Street', '', 'Manchester', '', 'M4 5JW', 'UK', 'www.able-manchester.co.uk', '+441616373062', 'able-manchester.co.uk/contact/', '20', 'Located in Central Manchester; Run by Family', 'ablemanchester.jpg', '', 'Fill application. make the full payment.', 'Full payment in advance', '');
 
 -- --------------------------------------------------------
 
@@ -242,13 +259,13 @@ CREATE TABLE `squalifications` (
   `qID` int(11) NOT NULL,
   `sID` int(11) NOT NULL,
   `qName` enum('Primary','Secondary','Diploma','Bachelor','Masters') NOT NULL,
-  `qFile` blob NOT NULL,
   `qLanguage` enum('English','French','German','Spanish','Italian','Farsi') NOT NULL,
   `qCountry` varchar(30) NOT NULL,
   `GPA` decimal(10,0) NOT NULL,
   `qInstitute` varchar(30) NOT NULL,
   `qComment` varchar(255) NOT NULL,
-  `qDoc` blob NOT NULL
+  `qDoc` blob NOT NULL,
+  `qDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -344,6 +361,12 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `agents`
   ADD PRIMARY KEY (`aID`);
+
+--
+-- Indexes for table `agentstudent`
+--
+ALTER TABLE `agentstudent`
+  ADD PRIMARY KEY (`agentstudentID`);
 
 --
 -- Indexes for table `coursetype`
@@ -443,6 +466,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `agents`
   MODIFY `aID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `agentstudent`
+--
+ALTER TABLE `agentstudent`
+  MODIFY `agentstudentID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `coursetype`
 --
