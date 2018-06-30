@@ -4,8 +4,8 @@
     ?>
 <div id="main">
     <?php
-    include ('base.php')
     
+    include ('base.php');
     ?>
 </div>
 <?php
