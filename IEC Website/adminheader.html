@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Student</title>
+    <title>IEC Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -89,24 +89,39 @@
       <!-- Navbar Start-->
       <header class="nav-holder make-sticky">
         <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
-          <div class="container"><a href="index.html" class="navbar-brand home"><img src="img/logo2.png" alt="IEC logo" class="d-none d-md-inline-block"><img src="img/logo-small.png" alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to homepage</span></a>
+          <div class="container"><a href="index.html" class="navbar-brand home"><img src="img/logo2.png" alt="IEC logo" class="d-none d-md-inline-block"><img src="img/logo-small.png" alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only">IEC - go to homepage</span></a>
             <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
             <div id="navigation" class="navbar-collapse collapse">
               <ul class="nav navbar-nav ml-auto">
                 
                   
-                <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" >Institutes<b class="caret"></b></a>
-
-                </li>
+                
                 
                 
                 <!-- ========== Contact dropdown ==================-->
-                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Agents<b class="caret"></b></a>
-                  
-                </li>
-				<li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Students<b class="caret"></b></a>
-                  
-                </li>
+                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Institutes<b class="caret"></b></a>
+                   <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="admininstitutesearch.php" class="nav-link">Search</a></li>
+					<li class="dropdown-item"><a href="adminaddinstitute.php" class="nav-link">Add</a></li>
+					<li class="dropdown-item"><a href="adminUpdateinstitute.php" class="nav-link">Update</a></li>
+					<li class="dropdown-item"><a href="admindeleteinstitute.php" class="nav-link">Delete</a></li>  
+                  </ul>
+				  <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Agents<b class="caret"></b></a>
+                   <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="adminsearchagent.php" class="nav-link">Search</a></li>
+					<li class="dropdown-item"><a href="adminaddagent.php" class="nav-link">Add</a></li>
+					<li class="dropdown-item"><a href="adminupdateagent.php" class="nav-link">Update</a></li>
+					<li class="dropdown-item"><a href="admindeleteagent.php" class="nav-link">Delete</a></li>  
+					<li class="dropdown-item"><a href="agenttostudent.php" class="nav-link">Agent to Student</a></li> 
+                  </ul>
+				  <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Students<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="adminsearchstudent.php" class="nav-link">Search</a></li>
+					<li class="dropdown-item"><a href="adminaddstudent.php" class="nav-link">Add</a></li>
+					<li class="dropdown-item"><a href="adminupdatestudent.php" class="nav-link">Update</a></li>
+					<li class="dropdown-item"><a href="admindeletestudent.php" class="nav-link">Delete</a></li>  
+                  </ul>
+				
                 <!-- ========== Contact dropdown end ==================-->
               </ul>
             </div>
