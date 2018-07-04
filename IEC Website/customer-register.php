@@ -3,11 +3,11 @@ include('siteHeader.php');
 
 require('DataBase.php');
 
-if(isset($_SESSION['login_user'])){
-    header("location:");
-    $x='sdfsd';
-    ///inja bayad check konim che role chiye ta bar asae on redirect konim
-}
+//if(isset($_SESSION['login_user'])){
+//    header("location:");
+//    $x='sdfsd';
+//    ///inja bayad check konim che role chiye ta bar asae on redirect konim
+//}
 
 $firsname='';
 $lastname='';
