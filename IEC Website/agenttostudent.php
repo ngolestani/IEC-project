@@ -1,5 +1,5 @@
 <?php
- include ('adminheader.html');
+ include('adminheader.php');
  ?>
 <div id="main">
     <?php

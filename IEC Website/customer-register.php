@@ -1,5 +1,4 @@
 <?php
-include('siteHeader.php');
 
 require('DataBase.php');
 
@@ -104,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
                     $_SESSION['role'] = $result['role'];
                     if ($result['role'] == 1) {
                         $info = "You're Admin";
-                        ///redirect to admin panel
+                        header("Location:admin.php");
                     } elseif ($result['role'] == 2) {
                         $info = "You're Agent";
                         /////redirectto agent panel
@@ -128,7 +127,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     else{
 
     }
-
+include('siteHeader.php');
 ?>
       <div id="heading-breadcrumbs">
         <div class="container">

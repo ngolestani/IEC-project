@@ -9,7 +9,7 @@
 			  <div class="row">
 <div class="container">
 <div class="row">
-<form action="adminaddinstitute.php" method="post" class="col-lg-12 mx-auto">
+<form action="adminAddInstitute.php" method="post" class="col-lg-12 mx-auto">
 				<div class="col-lg-6">
                       <div class="form-group">
                         <label for="name"><strong>Institute Name</strong></label>

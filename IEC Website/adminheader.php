@@ -51,7 +51,7 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
-                <div class="login"><p>Welcome back <strong>Nader Golestani</strong></p></div>
+                <div class="login"><p>Welcome back <strong>Nader Golestani  || <a href="logout.php">LOGOUT</a></strong></p></div>
                 
               </div>
             </div>
@@ -101,11 +101,14 @@
                 <!-- ========== Contact dropdown ==================-->
                 <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Institutes<b class="caret"></b></a>
                    <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="admininstitutesearch.php" class="nav-link">Search</a></li>
-					<li class="dropdown-item"><a href="adminaddinstitute.php" class="nav-link">Add</a></li>
-					<li class="dropdown-item"><a href="adminUpdateinstitute.php" class="nav-link">Update</a></li>
-					<li class="dropdown-item"><a href="admindeleteinstitute.php" class="nav-link">Delete</a></li>  
+                       <li class="dropdown-item"><a href="AllInstitute.php" class="nav-link">ALL Institute</a></li>
+                       <li class="dropdown-item"><a href="adminAddInstitute.php" class="nav-link">Add Institute</a></li>
                   </ul>
+                  <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Course<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li class="dropdown-item"><a href="AllCourses.php" class="nav-link">ALL Course</a></li>
+                          <li class="dropdown-item"><a href="createCourse.php" class="nav-link">Add Course</a></li>
+                      </ul>
 				  <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Agents<b class="caret"></b></a>
                    <ul class="dropdown-menu">
                     <li class="dropdown-item"><a href="adminsearchagent.php" class="nav-link">Search</a></li>

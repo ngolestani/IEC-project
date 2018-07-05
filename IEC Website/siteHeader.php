@@ -1,4 +1,3 @@
-<?php  session_start() ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +51,21 @@
                             <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                             <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                         </ul>
-                        <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Login</span></a><a href="customer-register.php" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Register</span></a></div>
+                        <div class="login">
+                            <?php if (!isset($_SESSION['login_user'])){ ?>
+                            <a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn">
+                                <i class="fa fa-sign-in"></i>
+                                <span class="d-none d-md-inline-block">Login</span></a>
+                            <a href="customer-register.php" class="signup-btn">
+                                <i class="fa fa-user"></i>
+                                <span class="d-none d-md-inline-block">Register</span></a>
+                            <?php } ?>
+                            <?php if (isset($_SESSION['login_user'])){ ?>
+                                <a href="logout.php" class="signup-btn">
+                                    <i class="fa fa-user"></i>
+                                    <span class="d-none d-md-inline-block">logout</span></a>
+                            <?php } ?>
+                        </div>
                         <ul class="social-custom list-inline">
                             <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>

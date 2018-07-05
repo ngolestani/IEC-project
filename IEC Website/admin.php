@@ -1,12 +1,7 @@
 <?php
- include ('adminheader.html');
-
-    ?>
+include('DataBase.php');
+include('adminheader.php'); ?>
 <div id="main">
-    <?php
-    include('DataBase.php');
-    
-    ?>
 </div>
 <?php
     include ('footer.html');
