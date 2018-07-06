@@ -1,4 +1,7 @@
-<?php include('DataBase.php');?>
+<?php
+    include('DataBase.php');
+    include('isAdmin.php');
+?>
 
 <?php
 $result=[];

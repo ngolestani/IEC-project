@@ -111,19 +111,11 @@
                       </ul>
 				  <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Agents<b class="caret"></b></a>
                    <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="adminsearchagent.php" class="nav-link">Search</a></li>
-					<li class="dropdown-item"><a href="adminaddagent.php" class="nav-link">Add</a></li>
-					<li class="dropdown-item"><a href="adminupdateagent.php" class="nav-link">Update</a></li>
-					<li class="dropdown-item"><a href="admindeleteagent.php" class="nav-link">Delete</a></li>  
-					<li class="dropdown-item"><a href="agenttostudent.php" class="nav-link">Agent to Student</a></li> 
+                    <li class="dropdown-item"><a href="AllAgent.php" class="nav-link">All Agents</a></li>
                   </ul>
 				  <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Students<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="adminsearchstudent.php" class="nav-link">Search</a></li>
-					<li class="dropdown-item"><a href="showallstudents.php" class="nav-link">Show all Students</a></li>
-					<li class="dropdown-item"><a href="adminaddstudent.php" class="nav-link">Add</a></li>
-					<li class="dropdown-item"><a href="adminupdatestudent.php" class="nav-link">Update</a></li>
-					<li class="dropdown-item"><a href="admindeletestudent.php" class="nav-link">Delete</a></li>  
+					<li class="dropdown-item"><a href="showallstudents.php" class="nav-link">All Students</a></li>
                   </ul>
 				
                 <!-- ========== Contact dropdown end ==================-->

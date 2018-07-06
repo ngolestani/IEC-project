@@ -1,17 +1,26 @@
 <?php
-    include('DataBase.php');
-    include('isAdmin.php')
+include('DataBase.php');
+include('isAdmin.php');
 ?>
 
 <?php
 $result=[];
+$ids = [];
 $pdo = Database::connect();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "SELECT id,name,type,city,country,telephone,email FROM institute";
+$sql = "SELECT profile_id FROM users WHERE role=2";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$ids = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($ids as $id) {
+    $sql = "SELECT id,first_name,last_name,email,country,verify,user_id FROM agents WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', intval($id['profile_id']+0));
+    $stmt->execute();
+    $result[] = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 ?>
 
@@ -29,28 +38,36 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <table class="table table-striped table-sm mb-4 border-bottom">
                 <thead>
                 <tr class="text-center">
-                    <th scope="col">name</th>
-                    <th scope="col">type</th>
-                    <th scope="col">city</th>
-                    <th scope="col">country</th>
-                    <th scope="col">telephone</th>
-                    <th scope="col">email</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Country</th>
                     <th scope="col">Edit</th>
                 </tr>
                 </thead>
                 <tbody id="result">
                 <?php foreach ($result as $res){ ?>
                     <tr class="text-center">
-                        <td><?php print $res['name'] ?></td>
-                        <td><?php print $res['type'] ?></td>
-                        <td><?php print $res['city'] ?></td>
-                        <td><?php print $res['country'] ?></td>
-                        <td><?php print $res['telephone'] ?></td>
+                        <td><?php print $res['first_name'] ?></td>
+                        <td><?php print $res['last_name'] ?></td>
                         <td><?php print $res['email'] ?></td>
+                        <td><?php print $res['country'] ?></td>
                         <td>
-                            <a href="ediTinstitute.php?id=<?php print $res['id'] ?> " class="btn btn-warning btn-sm float-left">Edit</a>
-                            <form action="deleteInstitute.php" method="POST">
-                                <input type="hidden" name="deleteID" value="<?php print $res['id'] ?>">
+                            <?php if ($res['verify']==0){ ?>
+                                <form action="approveAgent.php" method="POST">
+                                    <input type="hidden" name="id" value="<?php print $res['id'] ?>">
+                                    <input type="hidden" name="user_id" value="<?php print $res['user_id'] ?>">
+                                    <button type="submit" name="approve" class="btn btn-success btn-sm float-left">Approve</button>
+                                </form>
+                            <?php }else{ ?>
+                                <form action="disapproveAgent.php" method="POST">
+                                    <input type="hidden" name="id" value="<?php print $res['id'] ?>">
+                                    <input type="hidden" name="user_id" value="<?php print $res['user_id'] ?>">
+                                    <button type="submit" name="approve" class="btn btn-dark btn-sm float-left">Disapprove</button>
+                                </form>
+                            <?php } ?>
+                            <form action="deleteAgent.php" method="POST">
+                                <input type="hidden" name="user_id" value="<?php print $res['user_id'] ?>">
                                 <button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>
                             </form>
                         </td>
@@ -76,6 +93,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
             courseArray[i] = arr;
         });
+        console.log(courseArray);
         $("#searching").keyup(function(event) {
             var query = $(this).val();
             var html='';
@@ -98,11 +116,21 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         html += '<td>' + value[2] + '</td>';
                         html += '<td>' + value[3] + '</td>';
                         html += '<td>' + value[4] + '</td>';
-                        html += '<td>' + value[5] + '</td>';
-                        html += '<td>' + value[6] + '</td>';
-                        html += '<td>'+
-                            '<a href="ediTinstitute.php?id=' +value[0]+'" class="btn btn-warning btn-sm float-left">Edit</a>'+
-                            '<form action="deleteInstitute.php" method="POST">'+
+                        html += '<td>';
+                        if (value[5]==0){
+                            html += '<form action="approveAgent.php" method="POST">'+
+                                '<input type="hidden" name="id" value="'+ value[0]+'">'+
+                                '<input type="hidden" name="user_id" value="'+value[6] +'">'+
+                                '<button type="submit" name="approve" class="btn btn-success btn-sm float-left">Approve</button>'+
+                                '</form>';
+                        }else{
+                            html += '<form action="disapproveAgent.php" method="POST">'+
+                                '<input type="hidden" name="id" value="'+value[0]+'">'+
+                                '<input type="hidden" name="user_id" value="'+value[6]+'">'+
+                                '<button type="submit" name="approve" class="btn btn-dark btn-sm float-left">Disapprove</button>'+
+                                '</form>'
+                        }
+                          html += '<form action="deleteCourse.php" method="POST">'+
                             '<input type="hidden" name="deleteID" value="'+value[0]+'">'+
                             '<button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>'+
                             '</form>'+
@@ -117,11 +145,21 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     html += '<td>' + value[2] + '</td>';
                     html += '<td>' + value[3] + '</td>';
                     html += '<td>' + value[4] + '</td>';
-                    html += '<td>' + value[5] + '</td>';
-                    html += '<td>' + value[6] + '</td>';
-                    html += '<td>'+
-                        '<a href="ediTinstitute.php?id=' +value[0]+'" class="btn btn-warning btn-sm float-left">Edit</a>'+
-                        '<form action="deleteInstitute.php" method="POST">'+
+                    html += '<td>';
+                    if (value[5]==0){
+                        html += '<form action="approveAgent.php" method="POST">'+
+                            '<input type="hidden" name="id" value="'+ value[0]+'">'+
+                            '<input type="hidden" name="user_id" value="'+value[6] +'">'+
+                            '<button type="submit" name="approve" class="btn btn-success btn-sm float-left">Approve</button>'+
+                            '</form>';
+                    }else{
+                        html += '<form action="disapproveAgent.php" method="POST">'+
+                            '<input type="hidden" name="id" value="'+value[0]+'">'+
+                            '<input type="hidden" name="user_id" value="'+value[6]+'">'+
+                            '<button type="submit" name="approve" class="btn btn-dark btn-sm float-left">Disapprove</button>'+
+                            '</form>'
+                    }
+                    html += '<form action="deleteCourse.php" method="POST">'+
                         '<input type="hidden" name="deleteID" value="'+value[0]+'">'+
                         '<button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>'+
                         '</form>'+
