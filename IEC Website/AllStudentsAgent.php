@@ -1,30 +1,21 @@
 <?php
 include('DataBase.php');
-include('isAdmin.php');
-?>
+include('isAgent.php');
 
-<?php
 $result=[];
-$ids = [];
+
 $pdo = Database::connect();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "SELECT profile_id FROM users WHERE role=2";
+$sql = "SELECT id,first_name,last_name,email,country FROM students WHERE agent_id=:agent_id";
 $stmt = $pdo->prepare($sql);
+$stmt->bindParam(':agent_id', $_SESSION['profile_id']);
 $stmt->execute();
-$ids = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($ids as $id) {
-    $sql = "SELECT id,first_name,last_name,email,country,verify,user_id FROM agents WHERE id=:id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', intval($id['profile_id']+0));
-    $stmt->execute();
-    $result[] = $stmt->fetch(PDO::FETCH_ASSOC);
-}
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<?php include('adminheader.php'); ?>
+<?php include('agentsheader.php'); ?>
     <div id="main">
         <div class="container">
             <div class="input-group input-group-sm my-3 col-3">
@@ -42,7 +33,7 @@ foreach ($ids as $id) {
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Country</th>
-                    <th scope="col">Edit</th>
+<!--                    <th scope="col">Edit</th>-->
                 </tr>
                 </thead>
                 <tbody id="result">
@@ -52,25 +43,9 @@ foreach ($ids as $id) {
                         <td><?php print $res['last_name'] ?></td>
                         <td><?php print $res['email'] ?></td>
                         <td><?php print $res['country'] ?></td>
-                        <td>
-                            <?php if ($res['verify']==0){ ?>
-                                <form action="approveAgent.php" method="POST">
-                                    <input type="hidden" name="id" value="<?php print $res['id'] ?>">
-                                    <input type="hidden" name="user_id" value="<?php print $res['user_id'] ?>">
-                                    <button type="submit" name="approve" class="btn btn-success btn-sm float-left">Approve</button>
-                                </form>
-                            <?php }else{ ?>
-                                <form action="disapproveAgent.php" method="POST">
-                                    <input type="hidden" name="id" value="<?php print $res['id'] ?>">
-                                    <input type="hidden" name="user_id" value="<?php print $res['user_id'] ?>">
-                                    <button type="submit" name="approve" class="btn btn-dark btn-sm float-left">Disapprove</button>
-                                </form>
-                            <?php } ?>
-                            <form action="deleteAgent.php" method="POST">
-                                <input type="hidden" name="user_id" value="<?php print $res['user_id'] ?>">
-                                <button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
+<!--                        <td>-->
+<!--                            <a href="showStudentAgent.php?id=--><?php //print $res['id'] ?><!-- " class="btn btn-warning btn-sm">Show Student Info</a>-->
+<!--                        </td>-->
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -84,8 +59,6 @@ foreach ($ids as $id) {
         crossorigin="anonymous"></script>
     <script>
         var courses = <?php print json_encode($result) ?>;
-        // var t =courses.filter(function (c) { return c.type=='primary' });
-        // console.log(t);
         var courseArray = [];
         courses.forEach(function(element,i) {
             var arr = $.map(element, function(value) {
@@ -116,25 +89,7 @@ foreach ($ids as $id) {
                         html += '<td>' + value[2] + '</td>';
                         html += '<td>' + value[3] + '</td>';
                         html += '<td>' + value[4] + '</td>';
-                        html += '<td>';
-                        if (value[5]==0){
-                            html += '<form action="approveAgent.php" method="POST">'+
-                                '<input type="hidden" name="id" value="'+ value[0]+'">'+
-                                '<input type="hidden" name="user_id" value="'+value[6] +'">'+
-                                '<button type="submit" name="approve" class="btn btn-success btn-sm float-left">Approve</button>'+
-                                '</form>';
-                        }else{
-                            html += '<form action="disapproveAgent.php" method="POST">'+
-                                '<input type="hidden" name="id" value="'+value[0]+'">'+
-                                '<input type="hidden" name="user_id" value="'+value[6]+'">'+
-                                '<button type="submit" name="approve" class="btn btn-dark btn-sm float-left">Disapprove</button>'+
-                                '</form>'
-                        }
-                          html += '<form action="deleteCourse.php" method="POST">'+
-                            '<input type="hidden" name="deleteID" value="'+value[0]+'">'+
-                            '<button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>'+
-                            '</form>'+
-                            '</td></tr>';
+                        html += '</tr>';
                     });
                     var div = document.getElementById('result');
                     div.innerHTML = html;
@@ -145,25 +100,7 @@ foreach ($ids as $id) {
                     html += '<td>' + value[2] + '</td>';
                     html += '<td>' + value[3] + '</td>';
                     html += '<td>' + value[4] + '</td>';
-                    html += '<td>';
-                    if (value[5]==0){
-                        html += '<form action="approveAgent.php" method="POST">'+
-                            '<input type="hidden" name="id" value="'+ value[0]+'">'+
-                            '<input type="hidden" name="user_id" value="'+value[6] +'">'+
-                            '<button type="submit" name="approve" class="btn btn-success btn-sm float-left">Approve</button>'+
-                            '</form>';
-                    }else{
-                        html += '<form action="disapproveAgent.php" method="POST">'+
-                            '<input type="hidden" name="id" value="'+value[0]+'">'+
-                            '<input type="hidden" name="user_id" value="'+value[6]+'">'+
-                            '<button type="submit" name="approve" class="btn btn-dark btn-sm float-left">Disapprove</button>'+
-                            '</form>'
-                    }
-                    html += '<form action="deleteCourse.php" method="POST">'+
-                        '<input type="hidden" name="deleteID" value="'+value[0]+'">'+
-                        '<button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>'+
-                        '</form>'+
-                        '</td></tr>';
+                    html += '</tr>';
                 });
                 var div = document.getElementById('result');
                 div.innerHTML = html;

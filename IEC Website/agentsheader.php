@@ -1,9 +1,20 @@
+<?php
+
+$pdo = Database::connect();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT first_name,last_name FROM agents WHERE id=:id LIMIT 1";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id', $_SESSION['profile_id']);
+$stmt->execute();
+$fullName = $stmt->fetch(PDO::FETCH_ASSOC);
+Database::disconnect();
+?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Student</title>
+    <title>IEC Agents</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -43,7 +54,7 @@
         <div class="container">
           <div class="row d-flex align-items-center">
             <div class="col-md-6 d-md-block d-none">
-              <p>Last Login: 20 June 2018 at 20:23 ----- Logout ----<strong>Authorized Student Area</strong></p>
+              <p><strong>Authorized Agent Area</strong></p>
             </div>
             <div class="col-md-6">
               <div class="d-flex justify-content-md-end justify-content-between">
@@ -51,8 +62,9 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
-                <div class="login"><p>Welcome back <strong>Nader Golestani</strong></p></div>
-                
+                <div class="login"><p>Welcome back <strong><?php print $fullName['first_name'].$fullName['last_name'] ?>  || <a href="logout.php">LOGOUT</a></strong>
+                    </div>
+
               </div>
             </div>
           </div>
@@ -80,64 +92,68 @@
                 </p>
               </form>
               <p class="text-center text-muted">Not registered yet?</p>
-              <p class="text-center text-muted"><a href="customer-register.php"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+              <p class="text-center text-muted"><a href="usersregister.php"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
             </div>
           </div>
         </div>
       </div>
       <!-- Login modal end-->
       <!-- Navbar Start-->
-    <header class="nav-holder make-sticky">
+      <header class="nav-holder make-sticky">
         <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
-          <div class="container"><a href="index.html" class="navbar-brand home"><img src="img/logo2.png" alt="IEC logo" class="d-none d-md-inline-block"><img src="img/logo-small.png" alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to homepage</span></a>
+          <div class="container"><a href="index.html" class="navbar-brand home"><img src="img/logo2.png" alt="IEC logo" class="d-none d-md-inline-block"><img src="img/logo-small.png" alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only">IEC - go to homepage</span></a>
             <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
             <div id="navigation" class="navbar-collapse collapse">
               <ul class="nav navbar-nav ml-auto">
-                
-                  
-                <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Assessment Forms<b class="caret"></b></a>
-                  <ul class="dropdown-menu megamenu">
-                    <li>
-                      <div class="row">
-                        <div class="col-lg-6"><img src="img/logo2.png" alt="" class="img-fluid d-none d-lg-block"></div>
-                        <div class="col-lg-3 col-md-6">
-                          <h5>Fill Forms</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="template-accordions.html" class="nav-link">Personal Profile</a></li>
-                            <li class="nav-item"><a href="template-alerts.html" class="nav-link">Academic Profile</a></li>
-                            <li class="nav-item"><a href="template-buttons.html" class="nav-link">Sponsor Profile</a></li>
-                            <li class="nav-item"><a href="template-buttons.html" class="nav-link">Language Profile</a></li>
-                            <li class="nav-item"><a href="template-buttons.html" class="nav-link">Visa Profile</a></li>
-                            
-                          </ul>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                          <h5>View/Update Forms</h5>
-                          <ul class="list-unstyled mb-3">
-                            <li class="nav-item"><a href="template-header-default.html" class="nav-link">Personal</a></li>
-                            <li class="nav-item"><a href="template-header-nosticky.html" class="nav-link">Academic(11-15)</a></li>
-                            <li class="nav-item"><a href="template-header-light.html" class="nav-link">Sponsor</a></li>
-                              <li class="nav-item"><a href="template-header-light.html" class="nav-link">Language</a></li>
-                              <li class="nav-item"><a href="template-buttons.html" class="nav-link">Visa</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
+
+                  <li class="nav-item"><a href="agentProfile.php">My Profile<b class="caret"></b></a>
+<!--                <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Information<b class="caret"></b></a>-->
+<!--                  <ul class="dropdown-menu megamenu">-->
+<!--                    <li>-->
+<!--                      <div class="row">-->
+<!--                        <div class="col-lg-6"><img src="img/logo2.png" alt="" class="img-fluid d-none d-lg-block"></div>-->
+<!--                        <div class="col-lg-3 col-md-6">-->
+<!--                          <h5>Training</h5>-->
+<!--                          <ul class="list-unstyled mb-3">-->
+<!--                            <li class="nav-item"><a href="template-accordions.html" class="nav-link">British Council</a></li>-->
+<!--                            <li class="nav-item"><a href="template-alerts.html" class="nav-link">IEC</a></li>-->
+<!--                            <li class="nav-item"><a href="template-buttons.html" class="nav-link">Other</a></li>-->
+<!--                         -->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-3 col-md-6">-->
+<!--                          <h5>Embassies</h5>-->
+<!--                          <ul class="list-unstyled mb-3">-->
+<!--                            <li class="nav-item"><a href="template-header-default.html" class="nav-link">Address</a></li>-->
+<!--                            <li class="nav-item"><a href="template-header-nosticky.html" class="nav-link">Applications</a></li>-->
+<!--                            <li class="nav-item"><a href="template-header-light.html" class="nav-link">Visa</a></li>-->
+<!--                              -->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </li>-->
                 
                 
                 <!-- ========== Contact dropdown ==================-->
-                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">My Application<b class="caret"></b></a>
+                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">My Studetns<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="contact.html" class="nav-link">Contract</a></li>
-                      <li class="dropdown-item"><a href="contact3.html" class="nav-link">Authorization Letter</a></li>
-                    <li class="dropdown-item"><a href="contact2.html" class="nav-link">Application Progress</a></li>
-                    <li class="dropdown-item"><a href="contact3.html" class="nav-link">Outstandings</a></li>
-                      <li class="dropdown-item"><a href="contact3.html" class="nav-link">My Agent</a></li>
+                    <li class="dropdown-item"><a href="AllStudentsAgent.php" class="nav-link">ALL Students</a></li>
+<!--                    <li class="dropdown-item"><a href="viewpersonalprofile.php" class="nav-link">View personal profile</a></li>-->
+<!--					<li class="dropdown-item"><a href="viewacademicprofile.php" class="nav-link">View academic profile</a></li>-->
+<!--					<li class="dropdown-item"><a href="viewlanguageprofile.php" class="nav-link">View language profile</a></li>-->
+<!--					<li class="dropdown-item"><a href="viewvisaprofile.php" class="nav-link">View visa profile</a></li>-->
+<!--                      <li class="dropdown-item"><a href="progress.php" class="nav-link">Progress</a></li>-->
+<!--                    <li class="dropdown-item"><a href="communication.php" class="nav-link">Communication</a></li>-->
+<!--					<li class="dropdown-item"><a href="searchinstitutes.php" class="nav-link">Search Institutes</a></li>-->
+<!--					<li class="dropdown-item"><a href="searchcourses.php" class="nav-link">search Courses</a></li>-->
+                    
                       
                   </ul>
-                </li>
+<!--				  <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown">Docs<b class="caret"></b></a>-->
+<!--                </li>-->
+				
                 <!-- ========== Contact dropdown end ==================-->
               </ul>
             </div>

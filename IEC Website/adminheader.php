@@ -1,3 +1,12 @@
+<?php
+$pdo = Database::connect();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT first_name,last_name FROM agents WHERE id=:id LIMIT 1";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id', $_SESSION['profile_id']);
+$stmt->execute();
+$fullName = $stmt->fetch(PDO::FETCH_ASSOC);
+Database::disconnect(); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -43,7 +52,7 @@
         <div class="container">
           <div class="row d-flex align-items-center">
             <div class="col-md-6 d-md-block d-none">
-              <p>Last Login: 20 June 2018 at 20:23 ----- Logout ----<strong>Authorized Admin Area</strong></p>
+<!--              <p>Last Login: 20 June 2018 at 20:23 ----- Logout ----<strong>Authorized Admin Area</strong></p>-->
             </div>
             <div class="col-md-6">
               <div class="d-flex justify-content-md-end justify-content-between">
@@ -51,7 +60,7 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
-                <div class="login"><p>Welcome back <strong>Nader Golestani  || <a href="logout.php">LOGOUT</a></strong></p></div>
+                <div class="login"><p>Welcome back <strong><?php print $fullName['first_name'].$fullName['last_name'] ?>  || <a href="logout.php">LOGOUT</a></strong></p></div>
                 
               </div>
             </div>
@@ -80,7 +89,7 @@
                 </p>
               </form>
               <p class="text-center text-muted">Not registered yet?</p>
-              <p class="text-center text-muted"><a href="customer-register.php"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+              <p class="text-center text-muted"><a href="usersregister.php"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
             </div>
           </div>
         </div>

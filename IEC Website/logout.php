@@ -2,10 +2,10 @@
 session_start();
 
 if(!isset($_SESSION['login_user'])){
-    header("Location:customer-register.php");
+    header("Location:usersregister.php");
 }
 
 if(session_destroy()) {
-    header("Location:customer-register.php");
+    header("Location:usersregister.php");
 }
 ?>
