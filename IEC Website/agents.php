@@ -8,9 +8,8 @@ include('agentsheader.php');
 
 </div>
 <div id="main">
-    <?php include('editCourseForm.php') ?>
 </div>
-<div class="main-footer">
+<div class="main-footer mt-5">
     <div class="container bg-dark color-white">
         <div class="row">
             <div class="col-12 text-center mt-3">

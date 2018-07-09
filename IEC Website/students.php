@@ -7,7 +7,6 @@ include('studentsheader.php');
 
 </div>
 <div id="main">
-    <?php include('editCourseForm.php') ?>
 </div>
 <div class="main-footer">
     <div class="container bg-dark color-white">
