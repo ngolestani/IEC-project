@@ -178,7 +178,7 @@ include('siteHeader.php');
             <div class="col-lg-6">
               <div class="box">
                 <h2 class="text-uppercase">New account</h2>
-                <p class="lead">Not our registered customer yet?</p>
+                <p class="lead">Not our registered user yet??</p>
                 <hr>
                 <form action="" method="POST">
 
@@ -218,7 +218,7 @@ include('siteHeader.php');
             <div class="col-lg-6">
               <div class="box">
                 <h2 class="text-uppercase">Login</h2>
-                <p class="lead">Already our customer?</p>
+                <p class="lead">Already our user?</p>
                 <hr>
                 <form action="" method="POST">
                   <div class="form-group">
