@@ -85,7 +85,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["attachAgent"])) {
     if (isset($_POST['agentId']) && !empty($_POST['agentId'])){ $agentId= $_POST['agentId'];}else{$error[] = 'Agent ID name is empty';}
     if (isset($_POST['studentId']) && !empty($_POST['studentId'])){$studentId = $_POST['studentId'];}else{$error[] = 'Student ID name is empty';}
 
-    if (isset($error) && empty($error)){
+    if (isset($error) && empty($error) && !empty($agentId)){
+        $pdo = Database::connect();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $pdo->prepare("UPDATE students SET
+                    agent_id=:agent_id WHERE id=:student_id");
+        $stmt->bindParam(':student_id', $studentId);
+        $stmt->bindParam(':agent_id', $agentId);
+        $stmt->execute();
+
+        Database::disconnect();
+        header("Location: showallstudents.php",false);
+    }elseif (empty($agentId)){
+        $agentId = 0;
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -353,11 +366,7 @@ include('adminheader.php');
                 }
             </script>
         </section>
-
     </div>
-<div id="main">
-    <?php include('editCourseForm.php') ?>
-</div>
 <div class="main-footer">
     <div class="container bg-dark color-white">
         <div class="row">

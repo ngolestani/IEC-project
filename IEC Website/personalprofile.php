@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["personalProfile"])) {
     if (isset($_POST['country_of_residence']) && !empty($_POST['country_of_residence'])){$country_of_residence = $_POST['country_of_residence'];}else{$error[] = 'Country of Residence is empty';}
     if (isset($_POST['nationality']) && !empty($_POST['nationality'])){$nationality = $_POST['nationality'];}else{$error[] = 'Nationality is empty';}
     if (isset($_POST['marrital_status']) && !empty($_POST['marrital_status'])){$marrital_status = $_POST['marrital_status'];}else{$error[] = 'Marrital Status is empty';}
-    if (isset($_POST['dependent_children']) && !empty($_POST['dependent_children'])){$dependent_children = $_POST['dependent_children'];}else{$error[] = 'Dependent Children is empty';}
+    if (isset($_POST['dependent_children']) && $_POST['dependent_children'] >= 0){$dependent_children = $_POST['dependent_children'];}else{$error[] = 'Dependent Children value is not valid.';}
     if (isset($_POST['address1']) && !empty($_POST['address1'])){$address1 = $_POST['address1'];}else{$error[] = 'First Line Address is empty';}
     if (isset($_POST['address2'])){$address2= $_POST['address2'];}
     if (isset($_POST['city']) && !empty($_POST['city'])){$city = $_POST['city'];}else{$error[] = 'City is empty';}
@@ -125,7 +125,7 @@ country_of_residence=:country_of_residence,marrital_status=:marrital_status,nati
             }
         }
         Database::disconnect();
-        header("Location: Students.php",false);
+        header("Location: students.php",false);
     }
 }
 

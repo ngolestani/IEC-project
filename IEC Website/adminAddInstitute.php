@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addInstitute"])) {
     if (isset($_POST['website']) && !empty($_POST['website'])){$website = $_POST['website'];}else{$error[] = 'Website is empty';}
     if (isset($_POST['telephone']) && !empty($_POST['telephone'])){$telephone = $_POST['telephone'];}else{$error[] = 'Telephone is empty';}
     if (isset($_POST['email']) && !empty($_POST['email'])){$email = $_POST['email'];}else{$error[] = 'Email is empty';}
-    if (isset($_POST['commission']) && !empty($_POST['commission'])){$commission = $_POST['commission'];}else{$error[] = 'Commission is empty';}
+    if (isset($_POST['commission']) && $_POST['commission']>=0){$commission = $_POST['commission'];}else{$error[] = 'Commission is empty';}
     if (isset($_POST['comment']) && !empty($_POST['comment'])){$comment = $_POST['comment'];}else{$error[] = 'Comment is empty';}
     if (isset($_POST['how_to_apply']) && !empty($_POST['how_to_apply'])){$how_to_apply= $_POST['how_to_apply'];}else{$error[] = 'How to Apply is empty';}
     if (isset($_POST['payment_method']) && !empty($_POST['payment_method'])){$payment_method = $_POST['payment_method'];}else{$error[] = 'Payment Method is empty';}

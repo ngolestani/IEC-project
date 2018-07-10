@@ -6,8 +6,7 @@ include('studentsheader.php');
 <div id="main">
 
 </div>
-<div id="main">
-</div>
+
 <div class="main-footer">
     <div class="container bg-dark color-white">
         <div class="row">

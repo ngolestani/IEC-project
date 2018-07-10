@@ -7,8 +7,6 @@ include('agentsheader.php');
 <div id="main">
 
 </div>
-<div id="main">
-</div>
 <div class="main-footer mt-5">
     <div class="container bg-dark color-white">
         <div class="row">
